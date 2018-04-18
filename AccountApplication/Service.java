@@ -2,9 +2,11 @@ package AccountApplication;
 
 import java.util.HashMap;
 
+import com.google.gson.Gson;
+
 public class Service {
 	//static int count =1;
-	HashMap<String,Account> listAccount = new HashMap <String,Account> ();
+	static HashMap<String,Account> listAccount = new HashMap <String,Account> ();
 	
 	public boolean addAccount (Account account) {
 		Account exists = listAccount.get(account.getAccountNumber()); 
@@ -26,36 +28,11 @@ public class Service {
 		} else {
 			return null;
 		}
-		
-		
-	}
-/*public void addAccount(String firstName, String lastName, String accountNumber) {
-		
-		Account account = new Account(firstName, lastName, accountNumber);
-		listAccount.put(count, account);
-		count++;
-		
 	}
 	
-	public void getAccount(Account account) {
-		account.toString();
+	public String toJSon() {
+		Gson gson = new Gson();
+		String json = gson.toJson(listAccount);
+		return json;
 	}
-	
-	public void showMap() {
-        Set<Entry<Integer, Account>> hashSet=listAccount.entrySet();
-        for(Entry entry:hashSet ) {
-            System.out.println(entry.getKey()+ ", " + entry.getValue());
-        }
-	}
-	
-	public void showEntry(int num) {
-        Set<Entry<Integer, Account>> hashSet=listAccount.entrySet();
-        for(Entry entry:hashSet ) {
-        	int key = (Integer) entry.getKey();
-        	if(key==num) {
-        		System.out.println(entry.getKey()+ ", " + entry.getValue());
-        	}
-        }
-	}*/
-}
-
+ }

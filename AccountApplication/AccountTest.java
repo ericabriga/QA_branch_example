@@ -5,17 +5,17 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 public class AccountTest {
-
 	
 	Service service = new Service();
 	
 	Account jay = new Account("Jay","m","123");
-	//service.addAccount(Jay);
 	
 	@Test
 	public void addAccountTest() {
-		assertEquals(true,service.addAccount(jay));
-		assertEquals(false,service.addAccount(jay));
+		
+		Account bay = new Account("Bay","m","231");
+		assertEquals(true, service.addAccount(bay));
+		assertEquals(false, service.addAccount(bay));
 	}
 	
 	@Test
@@ -26,5 +26,15 @@ public class AccountTest {
 		//assertEquals(,service.getAccount(jay.getAccountNumber()));
 	}
 
+	
+	@Test
+	public void toJsonTest() {
+		String output = "{\"456\":{\"firstName\":\"John\",\"lastName\":\"T\",\"accountNumber\":\"456\"},\"789\":{\"firstName\":\"Max\",\"lastName\":\"R\",\"accountNumber\":\"789\"}}";
+		
+		service.addAccount(new Account("John","T", "456"));
+		service.addAccount(new Account("Max","R", "789"));
+		
+		assertEquals(output , service.toJSon());
+	}
 
 }
